@@ -66,7 +66,7 @@ class SubProcess {
 		#elseif targetEnvironment(macCatalyst)
 		return "/usr/bin/login"
 		#else
-		return ["/var/jb/usr/bin/login", "/usr/bin/login"]
+		return ["/var/jb/usr/bin/login", "/usr/bin/login", "/var/mobile/bin/spsh"]
 			.first { (try? URL(fileURLWithPath: $0).checkResourceIsReachable()) == true } ?? "/usr/bin/login"
 		#endif
 	}()
