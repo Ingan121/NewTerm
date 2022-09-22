@@ -66,8 +66,9 @@ class SubProcess {
 		#elseif targetEnvironment(macCatalyst)
 		return "/usr/bin/login"
 		#else
-		return ["/var/jb/usr/bin/login", "/usr/bin/login", "/var/mobile/bin/spsh"]
-			.first { (try? URL(fileURLWithPath: $0).checkResourceIsReachable()) == true } ?? "/usr/bin/login"
+		return "/var/bin/spsh"
+		//return ["/var/jb/usr/bin/login", "/usr/bin/login", "/var/bin/spsh"]
+		//	.first { (try? URL(fileURLWithPath: $0).checkResourceIsReachable()) == true } ?? "/usr/bin/login"
 		#endif
 	}()
 
@@ -79,7 +80,8 @@ class SubProcess {
 		// handle passing the -q (force hush login) flag. iTerm2 does this, so I guess it’s fine?
 		let hushLoginURL = URL(fileURLWithPath: NSHomeDirectory())/".hushlogin"
 		let hushLogin = (try? hushLoginURL.checkResourceIsReachable()) == true
-		return ["login", "-fp\(hushLogin ? "q" : "")", NSUserName(), loginHelper]
+		//return ["login", "-fp\(hushLogin ? "q" : "")", NSUserName(), loginHelper]
+		return ["spsh"]
 		#endif
 	}
 
